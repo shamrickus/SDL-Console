@@ -1059,6 +1059,11 @@ Console_Draw (Console_tty *tty)
 {
     int ret = 0;
 
+    if(!tty) {
+        ret = 1;
+        goto exit;
+    }
+
     if (SDL_LockMutex(tty->mutex) != 0) {
         Console_SetError("Mutex failed to lock!", SDL_GetError());
         ret = 1;
